@@ -25,7 +25,6 @@ module AliyunMail
     def send()
       Base::set_signature('POST', @params, @secret)
       res = Net::HTTP.post_form(get_mail_url, @params)
-      res.code == Net::HTTPOK
       res.is_a?(Net::HTTPSuccess)
     end
 

@@ -32,8 +32,20 @@ module AliyunMail
     # @param [String] key
     # @return [Hash]
     def self.set_signature(method, params, key)
-      signature = Aliyun::STS::Util.get_signature(method, params, key)
+      cano_query = params.sort.map { |k, v| [escape(k), escape(v)].join('=') }.join('&')
+      string_to_sign = method + '&' + escape('/') + '&' + escape(cano_query)
+      signature = Base64.strict_encode64(OpenSSL::HMAC.digest('sha1', key + '&', string_to_sign))
       params.merge!({'Signature' => signature})
+    end
+
+    # 自定义的escape，根据阿里云的文档，与标准的urlencode稍有不同
+    # @param [String] str
+    # @return [String]
+    def self.escape(str)
+      str = CGI.escape(str)
+      str = str.gsub("\+", '%20')
+      str = str.gsub("\*", '%2A')
+      str.gsub("%7E", '~')
     end
 
     # 获取阿里云邮件url
