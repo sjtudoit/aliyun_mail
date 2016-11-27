@@ -7,3 +7,6 @@
 /pkg/
 /spec/reports/
 /tmp/
+/aliyun_sdk.log
+/aliyun_mail-0.1.0.gem
+/.idea
