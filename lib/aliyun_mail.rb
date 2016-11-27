@@ -1,4 +1,4 @@
-require 'aliyun'
+require 'aliyun_sdk'
 
 require "aliyun_mail/version"
 require 'aliyun_mail/aliyun_mail'
