@@ -1,5 +1,3 @@
-require 'aliyun/sts'
-
 module AliyunMail
 
   module Base
