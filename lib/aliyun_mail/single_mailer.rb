@@ -84,6 +84,7 @@ module AliyunMail
     # @return [Hash]
     def set_base_params()
       @params.merge!({
+                        'Version' => '2015-11-23', 
                          'Action' => 'SingleSendMail',
                          'ReplyToAddress' => 'false',
                          'AddressType' => '0',
