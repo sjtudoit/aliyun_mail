@@ -1,4 +1,5 @@
 require 'aliyun_mail'
+require 'json'
 
 module AliyunMail
 
@@ -40,8 +41,9 @@ module AliyunMail
     # 设置短信变量
     # @param [String] param_string
     # @return [self]
-    def set_param_string(param_name,param_info)
-      @params.merge!({"ParamString" => '{"name":"'+param_name+'","info":"'+param_info+'"}'})
+    def set_param_string(param_string)
+      param_string = param_string.to_json
+      @params.merge!({"ParamString" => param_string})
       self
     end
 
