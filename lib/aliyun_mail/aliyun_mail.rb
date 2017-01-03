@@ -8,8 +8,7 @@ module AliyunMail
     def self.set_common_params(params)
       params.merge!({
                         'Format' => 'JSON',
-                        #mail和message共用。所以删除version，各自的class中再添加version
-                        # 'Version' => '2015-11-23',
+                        'Version' => '2015-11-23',
                         'SignatureMethod' => 'HMAC-SHA1',
                         'SignatureVersion' => '1.0',
                         'Timestamp' => Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ'),
@@ -52,12 +51,5 @@ module AliyunMail
     def get_mail_url()
       URI.parse('https://dm.aliyuncs.com/')
     end
-
-    # 获取阿里云短信url
-    # @return [Uri]
-    def get_message_url()
-      URI.parse('https://sms.aliyuncs.com/')
-    end
-
   end
 end
